@@ -15,13 +15,13 @@ class AdminTestimonialsController extends ModuleAdminController
 
 
         $this->fields_list = array(
-			'nam' => array('title' => $this->l('nam')),
+            'nam' => array('title' => $this->l('nam')),
             'descpt' => array('title' => $this->l('descpt')),
-		);
+        );
 
 
         $this->fields_form = array(
-			'legend' => array(
+            'legend' => array(
                 'title' => $this->l('nam')
             ),
 
@@ -43,9 +43,8 @@ class AdminTestimonialsController extends ModuleAdminController
                 'class' => 'button',
             ),
 
-		);
+        );
         parent::__construct();
 
     }
-
 }

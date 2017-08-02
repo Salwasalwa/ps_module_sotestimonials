@@ -42,14 +42,16 @@ class SOTesTimoniales extends Module
     public function addAdminTestimonials()
     {
         $tab = new Tab();
-        foreach(Language::getLanguages(false) as $lang)
+        foreach (Language::getLanguages(false) as $lang) {
             $tab->name[(int) $lang['id_lang']] = 'SOTesTimoniales';
+        }
         // Nom du controller sans le mot clé "Controller"
             $tab->class_name = 'AdminTestimonials';
             $tab->module = $this->name;
             $tab->id_parent = 0;
-            if (!$tab->save())
-                return false;
+        if (!$tab->save()) {
+            return false;
+        }
             return true;
     }
     // Suppression d'onglets

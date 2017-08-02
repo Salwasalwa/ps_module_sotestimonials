@@ -1,15 +1,23 @@
 <?php
 
-class sotestimonialeslistModuleFrontController extends ModuleFrontController {
-    public function init(){
+class sotestimonialeslistModuleFrontController extends ModuleFrontController
+{
+    public function init()
+    {
         parent::init();
-        $testimonailes = $this->getposts();
+        $listtestimonailes = $this->getposts();
         // die(var_dump($articles));
         $this->setTemplate('list.tpl');
+        foreach ($listtestimonailes as $testimonaile) {
+            $testimonaile['link'] = $this->context->link->getModuleLink('sotestimoniales', 'detail', array('id' =>$testimonaile['id_sotestimoniales']));
+            $testimonailes[] = $testimonaile;
+
+        }
         $this->context->smarty->assign('testimonailes', $testimonailes);
     }
 
-    public function getposts(){
+    public function getposts()
+    {
         global $smarty;
         $articles = array();
         $dbquery= new DbQuery();

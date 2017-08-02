@@ -3,6 +3,7 @@
 </div>
 
 {foreach $testimonailes as $testimonaile}
-    <h2>Testimonail: {$testimonaile.nam}</h2>
+    <h2>Testimonail: {$testimonaile.nam} <a href="{$testimonaile.link}">Detail</a></h2>
+
 
 {/foreach}
