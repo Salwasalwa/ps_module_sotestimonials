@@ -26,14 +26,16 @@ class SOTesTimoniales extends Module
     public function install()
     {
         return parent::install()&&
-        $this->addAdminTestimonials();
+        $this->addAdminTestimonials() &&
+        $this->installBD();
 
     }
 
     public function uninstall()
     {
         return parent::uninstall() &&
-        $this->removeAdminTestimonials();
+        $this->removeAdminTestimonials() &&
+        $this->uninstallBD();
 
     }
 
@@ -62,4 +64,22 @@ class SOTesTimoniales extends Module
         return $return;
     }
 
+    public function installBD()
+    {
+        return Db::getInstance()->execute('
+        CREATE TABLE `'.
+        _DB_PREFIX_.'sotestimoniales`(
+            `id_sotestimoniales` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+            `name` VARCHAR(255) NOT NULL,
+            `descpt` VARCHAR(255) NOT NULL,
+            PRIMARY KEY (`id_sotestimoniales`)
+            ) DEFAULT CHARSET=utf8;');
+    }
+
+    public function uninstallBD()
+    {
+        return Db::getInstance()->execute('
+        DROP TABLE `'.
+        _DB_PREFIX_.'sotestimoniales`');
+    }
 }
