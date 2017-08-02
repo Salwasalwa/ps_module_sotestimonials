@@ -70,7 +70,7 @@ class SOTesTimoniales extends Module
         CREATE TABLE `'.
         _DB_PREFIX_.'sotestimoniales`(
             `id_sotestimoniales` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-            `name` VARCHAR(255) NOT NULL,
+            `nam` VARCHAR(255) NOT NULL,
             `descpt` VARCHAR(255) NOT NULL,
             PRIMARY KEY (`id_sotestimoniales`)
             ) DEFAULT CHARSET=utf8;');
