@@ -25,15 +25,41 @@ class SOTesTimoniales extends Module
     }
     public function install()
     {
-        return parent::install();
+        return parent::install()&&
+        $this->addAdminTestimonials();
 
     }
 
     public function uninstall()
     {
-        return parent::uninstall();
+        return parent::uninstall() &&
+        $this->removeAdminTestimonials();
 
     }
 
+    public function addAdminTestimonials()
+    {
+        $tab = new Tab();
+        foreach(Language::getLanguages(false) as $lang)
+            $tab->name[(int) $lang['id_lang']] = 'SOTesTimoniales';
+        // Nom du controller sans le mot clé "Controller"
+            $tab->class_name = 'AdminTestimonials';
+            $tab->module = $this->name;
+            $tab->id_parent = 0;
+            if (!$tab->save())
+                return false;
+            return true;
+    }
+    // Suppression d'onglets
+    public function removeAdminTestimonials()
+    {
+        $classNames = array('admin_testimonials' => 'AdminTestimonials');
+        $return = true;
+        foreach ($classNames as $key => $className) {
+            $tab = new Tab(Tab::getIdFromClassName($className));
+            $return &= $tab->delete();
+        }
+        return $return;
+    }
 
 }
